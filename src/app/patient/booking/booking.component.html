@@ -1,0 +1,13 @@
+<div>
+<form [formGroup]="bookingForm" (ngSubmit)="submitBooking()">
+  <label>
+    Choose a doctor:
+    <select (change)="doctorChanged(event)">
+      <option *ngFor='let doctor of doctors' value="{{doctor.id}}">{{doctor.firstname}} {{doctor.lastname}}</option>
+    </select>
+  </label>
+  
+  <input type='submit'>
+  <!--booking-calendar [viewDate]="viewDate" [events]="events"></booking-calendar-->
+</form>
+</div>
