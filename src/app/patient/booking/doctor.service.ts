@@ -16,7 +16,7 @@ export class DoctorService {
   }
 
   getSlots(id) {
-    console.log(id);
+    //console.log(id);
     var slots = this.http.get("http://40.114.127.149:5002/slots/" + id);
     return slots
   }

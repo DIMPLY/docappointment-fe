@@ -6,10 +6,11 @@ import { PatientRoutingModule } from './patient-routing.module';
 import { PatientComponent } from './patient.component';
 import { BookingComponent } from './booking/booking.component';
 import { RecordComponent } from './record/record.component';
+import { CalendarComponent } from './booking/calendar/calendar.component';
 
 
 @NgModule({
-  declarations: [PatientComponent, BookingComponent, RecordComponent],
+  declarations: [PatientComponent, BookingComponent, RecordComponent, CalendarComponent],
   imports: [
     CommonModule,
     PatientRoutingModule,
