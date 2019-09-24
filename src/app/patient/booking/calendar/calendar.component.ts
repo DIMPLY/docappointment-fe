@@ -6,7 +6,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./calendar.component.less']
 })
 export class CalendarComponent implements OnInit {
-  objectKeys = Object.keys;
   num_checked = 0;
   @Input() days;
   @Input() slots;

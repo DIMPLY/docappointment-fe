@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { PatientRoutingModule } from './patient-routing.module';
 import { PatientComponent } from './patient.component';
@@ -14,8 +14,8 @@ import { CalendarComponent } from './booking/calendar/calendar.component';
   imports: [
     CommonModule,
     PatientRoutingModule,
-    ReactiveFormsModule
+    FormsModule
   ],
-  
+
 })
 export class PatientModule { }

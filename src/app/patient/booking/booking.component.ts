@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DoctorService } from './doctor.service';
-import { FormControl } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-booking',
@@ -15,32 +13,40 @@ export class BookingComponent implements OnInit {
   days = [];
   none_checked = true;
 
-  bookingForm = this.fb.group({
-    doctorSelected: ['']
-  });
+  formElements = {
+    doctorid: '0',
+    date: null,
+    start: null,
+    end: null
+  };
 
   constructor(
-    private doctorService: DoctorService,
-    private fb: FormBuilder
+    private doctorService: DoctorService
   ) { }
 
   ngOnInit() {
     this.doctorService.getDoctors().subscribe(doctors => this.doctors = doctors);
   }
 
-  doctorChanged(event, item) {
+  doctorChanged(event) {
     this.doctorService.getSlots(event.target.value).subscribe(slots => {
-      console.log(slots);
       this.slots = slots;
-      this.days = slots[0].occupation;
+      this.days = Object.keys(slots[0].occupation);
+      this.formElements = {
+        doctorid: event.target.value,
+        date: null,
+        start: null,
+        end: null
+      };
     });
   }
 
-  calendarChange(event) {
-    if(event.none_checked) {
-      this.slots.forEach((slot, i) => {
-        for(let _date in slot.occupation){
-          if (slot.occupation[_date] != 1){
+  calendarChanged(event) {
+    // Handle the slot status
+    if(event.none_checked) {  // the last checked one has been cleared
+      this.slots.forEach((slot) => {
+        for (let _date in slot.occupation) {
+          if (slot.occupation[_date] != 1) {
             slot.occupation[_date] = 0;
           }
         }
@@ -57,7 +63,8 @@ export class BookingComponent implements OnInit {
               if ((_date != date || Math.abs(idx - i) > 1) && slot.occupation[_date] != 1) slot.occupation[_date] = 2;
             }
           });
-        } else { // check a follow-up slot
+        }
+        else { // check a follow-up slot
           if (preslot) {
             if (preslot[date] == 2) {
               preslot[date] = 0;
@@ -91,10 +98,24 @@ export class BookingComponent implements OnInit {
       }
     }
     this.none_checked = event.none_checked;
+
+    // Handle the data to be submitted
+    this.formElements.date = date;
+    var addstart = this.slots[idx].slotstart;
+    var addend = this.slots[idx].slotend;
+    if (addstart == this.formElements.end || !this.formElements.end) {
+      this.formElements.end = addend;
+    }
+    if (addend == this.formElements.start || !this.formElements.start) {
+      this.formElements.start = addstart;
+    }
+
   }
 
   submitBooking() {
-
+    this.doctorService.bookAppointment(this.formElements).subscribe(res => {
+      console.log(res);
+    });
   }
 
 }

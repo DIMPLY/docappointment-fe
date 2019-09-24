@@ -1,8 +1,8 @@
 <table>
-<tr><th>time\date</th><th *ngFor="let day of objectKeys(days)">{{day.split('-').slice(1).join('-')}}</th></tr>
+<tr><th>time\date</th><th *ngFor="let day of days">{{day.split('-').slice(1).join('-')}}</th></tr>
 <tr *ngFor="let slot of slots; let i=index">
   <td>{{slot.slotstart}}</td>
-  <td *ngFor="let day of objectKeys(days)">
+  <td *ngFor="let day of days">
     <input type="checkbox" [disabled]="slot.occupation[day]" (change)="checkboxChanged($event, i, day)">
   </td>
 </tr>
