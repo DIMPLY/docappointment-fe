@@ -37,7 +37,6 @@ export class BookingComponent implements OnInit {
   }
 
   calendarChange(event) {
-    console.log(event)
     if(event.none_checked) {
       this.slots.forEach((slot, i) => {
         for(let _date in slot.occupation){

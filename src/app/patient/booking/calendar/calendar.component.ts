@@ -18,14 +18,6 @@ export class CalendarComponent implements OnInit {
   }
 
   public checkboxChanged(e, i, day) {
-/*    var afterchange = this.slots[i].occupation[day];
-    if(i < this.slots.length - 1) {
-      this.slots[i + 1].occupation[day] = 1;
-    }
-    if(i > 0) {
-      this.slots[i - 1].occupation[day] = 1;
-    }*/
-    console.log(e.target);
     var target = e.target;
     var wrapper = target.parentElement;
     var row = wrapper.parentElement;
