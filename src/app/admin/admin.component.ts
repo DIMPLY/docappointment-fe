@@ -31,7 +31,7 @@ export class AdminComponent implements OnInit {
     if (!confirm('Deleting doctor ' + this.doctorList[i].firstname + ' ' + this.doctorList[i].lastname + '?'))
       return;
     this.adminService.deleteDoctor(id).subscribe((data) => {
-      if (data.success) {
+      if (data && data['success']) {
         this.ngOnInit();
       }
     });
@@ -39,7 +39,7 @@ export class AdminComponent implements OnInit {
 
   addDoctor() {
     this.adminService.addDoctor(this.newfirstname, this.newlastname).subscribe((data) => {
-      if (data.success) {
+      if (data && data['success']) {
         this.ngOnInit();
       }
     });

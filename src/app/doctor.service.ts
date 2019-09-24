@@ -18,14 +18,14 @@ export class DoctorService {
   getSlots(id) {
     //console.log(id);
     var slots = this.http.get("http://40.114.127.149:5002/slots/" + id);
-    return slots
+    return slots;
   }
 
   bookAppointment(formElements) {
     //TODO: validate data before posting.
     let httpParams = {
       doctorid: formElements.doctorid,
-      patientid: 'b1aab4d3-3680-36e3-97ed-a44071176a15',
+      patientid: formElements.patientid,
       date: formElements.date,
       start: formElements.start,
       end: formElements.end

@@ -15,6 +15,7 @@ export class BookingComponent implements OnInit {
 
   formElements = {
     doctorid: '0',
+    patientid: 'b1aab4d3-3680-36e3-97ed-a44071176a15',
     date: null,
     start: null,
     end: null
@@ -33,7 +34,7 @@ export class BookingComponent implements OnInit {
       this.slots = slots;
       const firstSlotDates = slots[0].occupation;
       let days = Object.keys(firstSlotDates);
-      for (const date in slots[slots.length - 1].occupation) {
+      for (const date in slots[slots["length"] - 1].occupation) {
         if (!firstSlotDates.hasOwnProperty(date)) {
           days.push(date);
         }
@@ -49,6 +50,7 @@ export class BookingComponent implements OnInit {
       console.log(days);
       this.formElements = {
         doctorid: event.target.value,
+        patientid: 'b1aab4d3-3680-36e3-97ed-a44071176a15',
         date: null,
         start: null,
         end: null
@@ -130,7 +132,7 @@ export class BookingComponent implements OnInit {
   submitBooking() {
     this.doctorService.bookAppointment(this.formElements).subscribe(res => {
       console.log(res);
-      if (res.success) {
+      if (res && res['success']) {
         alert("New appointment booked with doctor! Date: "
           + this.formElements.date + ", from " + this.formElements.start
           + " to " + this.formElements.end + ".");
