@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DoctorService } from './doctor.service';
+import { DoctorService } from '../../doctor.service';
 
 @Component({
   selector: 'app-booking',
@@ -31,7 +31,22 @@ export class BookingComponent implements OnInit {
   doctorChanged(event) {
     this.doctorService.getSlots(event.target.value).subscribe(slots => {
       this.slots = slots;
-      this.days = Object.keys(slots[0].occupation);
+      const firstSlotDates = slots[0].occupation;
+      let days = Object.keys(firstSlotDates);
+      for (const date in slots[slots.length - 1].occupation) {
+        if (!firstSlotDates.hasOwnProperty(date)) {
+          days.push(date);
+        }
+      }
+      days.sort((a, b) => {
+        let atriple = a.split('-');
+        let btriple = b.split('-');
+        if (+atriple[0] != +btriple[0]) return (+atriple[0]) - (+btriple[0]);
+        if (+atriple[1] != +btriple[1]) return (+atriple[1]) - (+btriple[1]);
+        return (+atriple[2]) - (+btriple[2]);
+      });
+      this.days = days;
+      console.log(days);
       this.formElements = {
         doctorid: event.target.value,
         date: null,
@@ -43,7 +58,7 @@ export class BookingComponent implements OnInit {
 
   calendarChanged(event) {
     // Handle the slot status
-    if(event.none_checked) {  // the last checked one has been cleared
+    if (event.none_checked) {  // the last checked one has been cleared
       this.slots.forEach((slot) => {
         for (let _date in slot.occupation) {
           if (slot.occupation[_date] != 1) {
@@ -115,6 +130,12 @@ export class BookingComponent implements OnInit {
   submitBooking() {
     this.doctorService.bookAppointment(this.formElements).subscribe(res => {
       console.log(res);
+      if (res.success) {
+        alert("New appointment booked with doctor! Date: "
+          + this.formElements.date + ", from " + this.formElements.start
+          + " to " + this.formElements.end + ".");
+        self.location.reload();
+      }
     });
   }
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DoctorService } from '../doctor.service';
+import { AdminService } from "./admin.service";
 
 @Component({
   selector: 'app-admin',
@@ -7,9 +9,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
-  constructor() { }
+  doctorList;
+  newfirstname = '';
+  newlastname = '';
 
-  ngOnInit() {
+  constructor(
+    private doctorService: DoctorService,
+    private adminService: AdminService
+  ) { }
+
+  ngOnInit( ) {
+    console.log('init admin');
+    this.doctorService.getDoctors().subscribe((data) => {
+      this.doctorList = data;
+    });
+    this.newfirstname = '';
+    this.newlastname = '';
+  }
+
+  deleteDoctor(i, id) {
+    if (!confirm('Deleting doctor ' + this.doctorList[i].firstname + ' ' + this.doctorList[i].lastname + '?'))
+      return;
+    this.adminService.deleteDoctor(id).subscribe((data) => {
+      if (data.success) {
+        this.ngOnInit();
+      }
+    });
+  }
+
+  addDoctor() {
+    this.adminService.addDoctor(this.newfirstname, this.newlastname).subscribe((data) => {
+      if (data.success) {
+        this.ngOnInit();
+      }
+    });
   }
 
 }

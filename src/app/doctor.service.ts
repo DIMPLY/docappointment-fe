@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,8 @@ export class DoctorService {
   }
 
   bookAppointment(formElements) {
-    var httpParams = {
+    //TODO: validate data before posting.
+    let httpParams = {
       doctorid: formElements.doctorid,
       patientid: 'b1aab4d3-3680-36e3-97ed-a44071176a15',
       date: formElements.date,
