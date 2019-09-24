@@ -7,7 +7,7 @@
   <tr *ngFor="let doctor of doctorList; let i = index">
     <td>{{doctor.firstname}}</td>
     <td>{{doctor.lastname}}</td>
-    <td (click)="deleteDoctor(i, doctor.id)">X</td>
+    <td (click)="deleteDoctor(i, doctor.id)" class="X">X</td>
   </tr>
 </table>
 <table>

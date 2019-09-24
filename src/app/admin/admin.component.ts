@@ -19,7 +19,6 @@ export class AdminComponent implements OnInit {
   ) { }
 
   ngOnInit( ) {
-    console.log('init admin');
     this.doctorService.getDoctors().subscribe((data) => {
       this.doctorList = data;
     });

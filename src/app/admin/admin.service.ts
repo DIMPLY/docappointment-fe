@@ -14,7 +14,6 @@ export class AdminService {
   }
 
   addDoctor(firstname, lastname) {
-    console.log(firstname, lastname);
     let httpParams = {
       firstname: firstname,
       lastname: lastname
