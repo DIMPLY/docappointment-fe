@@ -7,7 +7,7 @@ import { PatientComponent } from './patient.component';
 import { BookingComponent } from './booking/booking.component';
 import { RecordComponent } from './record/record.component';
 import { CalendarComponent } from './booking/calendar/calendar.component';
-import {DoctorService} from "../doctor.service";
+import { DoctorService } from "../doctor.service";
 
 
 @NgModule({

@@ -1,1 +1,7 @@
-<p>doctor works!</p>
+<ul *ngIf="appointments!=false">
+  <li *ngFor="let appoint of appointments">
+    {{appoint.pat_first}} {{appoint.pat_last}},
+    {{["unattended", "booked", "finished"][appoint.status]}},
+    {{appoint.date}} from {{appoint.starttime}} to {{appoint.endtime}}
+  </li>
+</ul>

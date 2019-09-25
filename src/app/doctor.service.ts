@@ -11,19 +11,17 @@ export class DoctorService {
   ) {}
 
   getDoctors() {
-    var doctors = this.http.get('http://40.114.127.149:5002/doctor');
-    return doctors;
+    return this.http.get('http://40.114.127.149:5002/doctor');
   }
 
   getSlots(id) {
     //console.log(id);
-    var slots = this.http.get("http://40.114.127.149:5002/slots/" + id);
-    return slots;
+    return this.http.get("http://40.114.127.149:5002/slots/" + id);
   }
 
   bookAppointment(formElements) {
     //TODO: validate data before posting.
-    let httpParams = {
+    const httpParams = {
       doctorid: formElements.doctorid,
       patientid: formElements.patientid,
       date: formElements.date,
