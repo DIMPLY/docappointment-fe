@@ -17,7 +17,7 @@
       "entryPoint": [],
       "portMappings": [
         {
-          "hostPort": 80,
+          "hostPort": 4200,
           "protocol": "tcp",
           "containerPort": 4200
         }
@@ -61,6 +61,7 @@
   "memory": "512",
   "taskRoleArn": null,
   "compatibilities": [
+    "FARGATE",
     "EC2"
   ],
   "taskDefinitionArn": "arn:aws:ecs:us-west-2:050115469000:task-definition/docapp-task-fe:3",
@@ -117,7 +118,7 @@
   ],
   "pidMode": null,
   "requiresCompatibilities": [
-    "EC2"
+    "FARGATE"
   ],
   "cpu": "256",
   "revision": 3,
