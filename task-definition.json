@@ -9,12 +9,12 @@
         "logDriver": "awslogs",
         "secretOptions": null,
         "options": {
-          "awslogs-group": "/ecs/docapp-task-fe",
+          "awslogs-group": "/ecs/docapp-task",
           "awslogs-region": "us-west-2",
           "awslogs-stream-prefix": "ecs"
         }
       },
-      "entryPoint": [],
+      "entryPoint": null,
       "portMappings": [
         {
           "hostPort": 4200,
@@ -22,7 +22,7 @@
           "containerPort": 4200
         }
       ],
-      "command": [],
+      "command": null,
       "linuxParameters": null,
       "cpu": 128,
       "environment": [],
@@ -45,7 +45,7 @@
       "interactive": null,
       "healthCheck": null,
       "essential": true,
-      "links": [],
+      "links": null,
       "hostname": null,
       "extraHosts": null,
       "pseudoTerminal": null,
@@ -61,8 +61,8 @@
   "memory": "512",
   "taskRoleArn": null,
   "compatibilities": [
-    "FARGATE",
-    "EC2"
+    "EC2",
+    "FARGATE"
   ],
   "taskDefinitionArn": "arn:aws:ecs:us-west-2:050115469000:task-definition/docapp-task-fe:3",
   "family": "docapp-task-fe",
