@@ -61,8 +61,7 @@
   "memory": "512",
   "taskRoleArn": null,
   "compatibilities": [
-    "EC2",
-    "FARGATE"
+    "EC2"
   ],
   "taskDefinitionArn": "arn:aws:ecs:us-west-2:050115469000:task-definition/docapp-task-fe:3",
   "family": "docapp-task-fe",
@@ -118,7 +117,7 @@
   ],
   "pidMode": null,
   "requiresCompatibilities": [
-    "FARGATE"
+    "EC2"
   ],
   "cpu": "256",
   "revision": 3,
