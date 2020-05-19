@@ -120,6 +120,7 @@
   "requiresCompatibilities": [
     "FARGATE"
   ],
+  "networkMode": "awsvpc",
   "cpu": "256",
   "revision": 3,
   "status": "ACTIVE",
