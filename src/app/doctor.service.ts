@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpWrapper } from './httpwrapper';
 
 @Injectable({
   providedIn: 'root'
@@ -7,16 +7,16 @@ import { HttpClient } from '@angular/common/http';
 export class DoctorService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpWrapper
   ) {}
 
   getDoctors() {
-    return this.http.get('http://40.114.127.149:5002/doctor');
+    return this.http.get('doctor');
   }
 
   getSlots(id) {
     //console.log(id);
-    return this.http.get("http://40.114.127.149:5002/slots/" + id);
+    return this.http.get("slots/" + id);
   }
 
   bookAppointment(formElements) {
@@ -28,7 +28,7 @@ export class DoctorService {
       start: formElements.start,
       end: formElements.end
     };
-    return this.http.post('http://40.114.127.149:5002/appointment', httpParams);
+    return this.http.post('appointment', httpParams);
   }
 
 }

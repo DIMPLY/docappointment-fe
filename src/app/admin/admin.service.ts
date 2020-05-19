@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpWrapper } from '../httpwrapper';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpWrapper) {
   }
 
   deleteDoctor(id) {
-    return this.http.delete('http://40.114.127.149:5002/doctor?roleid=' + id);
+    return this.http.delete('doctor', {roleid: id});
   }
 
   addDoctor(firstname, lastname) {
@@ -18,7 +18,7 @@ export class AdminService {
       firstname: firstname,
       lastname: lastname
     };
-    let res = this.http.post('http://40.114.127.149:5002/doctor', httpParams);//?firstname=' + firstname + '&lastname=' + lastname);
+    let res = this.http.post('doctor', httpParams);
     return res;
   }
 

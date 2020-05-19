@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {DoctorService} from "./doctor.service";
+import {HttpWrapper} from "./httpwrapper";
 
 @NgModule({
   declarations: [
@@ -14,10 +15,11 @@ import {DoctorService} from "./doctor.service";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule//,
+    //HttpWrapper
+    HttpClientModule
     //ReactiveFormsModule
   ],
-  providers: [DoctorService],
+  providers: [DoctorService, HttpWrapper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
