@@ -9,6 +9,8 @@ COPY . \app
 
 WORKDIR \app
 
-RUN npm install -g @angular/cli@8 && npm install
+RUN npm install -g @angular/cli@8 angular-http-server && npm install
 
-CMD ng serve --host='0.0.0.0'
+RUN ng build
+
+CMD cd dist/docappoint && angular-http-server --host='0.0.0.0' -p 4200
